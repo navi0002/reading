@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSPO Scrum Game</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">PO</div>
+      <h1>PSPO Scrum Game</h1>
+    </div>
+    <div class="controls">
+      <button id="btn-new-game" class="btn secondary">New Game</button>
+      <button id="btn-start-sprint" class="btn primary">Start Sprint</button>
+      <button id="btn-complete-sprint" class="btn">Complete Sprint</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel metrics" aria-label="Metrics">
+      <h2>Metrics</h2>
+      <div class="metric-row">
+        <span>Value</span>
+        <div class="meter"><div id="meter-value" class="fill"></div></div>
+        <span id="metric-value" class="metric-num">0</span>
+      </div>
+      <div class="metric-row">
+        <span>Learning</span>
+        <div class="meter"><div id="meter-learning" class="fill"></div></div>
+        <span id="metric-learning" class="metric-num">0</span>
+      </div>
+      <div class="metric-row">
+        <span>Predictability</span>
+        <div class="meter"><div id="meter-predictability" class="fill"></div></div>
+        <span id="metric-predictability" class="metric-num">0</span>
+      </div>
+      <div class="metric-row">
+        <span>Sprint</span>
+        <div class="meter"><div id="meter-sprint" class="fill"></div></div>
+        <span id="metric-sprint" class="metric-num">1</span>
+      </div>
+
+      <div class="stats">
+        <div>Capacity: <strong id="stat-capacity">0</strong> pts</div>
+        <div>Planned: <strong id="stat-planned">0</strong> pts</div>
+        <div>Velocity Trend: <strong id="stat-velocity">0</strong> pts</div>
+      </div>
+
+      <div class="legend">
+        <p><strong>Goal:</strong> Maximize outcomes while improving predictability and learning.</p>
+      </div>
+    </section>
+
+    <section class="panel backlog" aria-label="Product Backlog">
+      <div class="panel-header">
+        <h2>Product Backlog</h2>
+        <div class="panel-actions">
+          <button id="btn-refine" class="btn small">Refine</button>
+          <button id="btn-add-discovery" class="btn small">Add Discovery</button>
+        </div>
+      </div>
+      <ul id="backlog-list" class="card-list" aria-live="polite"></ul>
+    </section>
+
+    <section class="panel sprint" aria-label="Sprint Planning">
+      <div class="panel-header">
+        <h2>Sprint Plan</h2>
+        <div class="panel-actions">
+          <button id="btn-auto-plan" class="btn small">Auto Plan</button>
+          <button id="btn-clear-plan" class="btn small">Clear Plan</button>
+        </div>
+      </div>
+      <ul id="sprint-plan" class="card-list droptarget" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <dialog id="scenario-dialog">
+    <form method="dialog" class="scenario">
+      <header>
+        <h3 id="scenario-title">Scenario</h3>
+      </header>
+      <p id="scenario-text"></p>
+      <div id="scenario-choices" class="choices"></div>
+      <menu>
+        <button value="close" class="btn">Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="summary-dialog">
+    <form method="dialog" class="summary">
+      <header>
+        <h3>End of Sprint Summary</h3>
+      </header>
+      <div id="summary-content"></div>
+      <menu>
+        <button value="ok" class="btn primary">OK</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <footer class="app-footer">
+    <div>
+      Built for Scrum teams practicing PSPO. No tracking. Local storage only.
+    </div>
+    <div>
+      <a href="https://www.scrum.org/resources/what-is-a-product-owner" target="_blank" rel="noreferrer">About PSPO</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Accessible focus outline only when keyboard is used
+    document.body.addEventListener('mousedown', function() {
+      document.body.classList.add('no-focus-outline');
+    });
+    document.body.addEventListener('keydown', function() {
+      document.body.classList.remove('no-focus-outline');
+    });
+  </script>
+</body>
+</html>
+
